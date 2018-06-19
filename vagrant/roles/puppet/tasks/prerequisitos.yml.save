@@ -1,0 +1,9 @@
+    - name: Baixando instalacao puppet DEBIAN
+      command: wget https://apt.puppetlabs.com/puppet5-release-xenial.deb
+      command: dpkg -i puppet5-release-xenial.deb
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Baixando instalacao puppet CentOS
+      command: rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm

@@ -1,0 +1,9 @@
+    - name: Aplicacao
+      template:
+        src: ../templates/index.html
+        dest: /var/www/html/index.html
+
+    - name: Baixando uma imagem
+      get_url:
+        url: https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg
+        dest: /var/www/html/imagem.svg

@@ -1,0 +1,5 @@
+    - name: Instalando o puppet
+      command: rpm -Uvh /root/tmp/puppet5-release-el-7.noarch.rpm
+
+    - name: Instalando o agent do puppet
+      yum: name=puppet-agent state=present

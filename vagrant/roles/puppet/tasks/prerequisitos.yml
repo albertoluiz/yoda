@@ -1,0 +1,15 @@
+    - name: Criando diretorio temporario
+      command: mkdir /root/tmp
+      ignore_errors: True
+
+    - name: Baixando instalacao puppet DEBIAN
+      get_url:
+        url: https://apt.puppetlabs.com/puppet5-release-xenial.deb
+        dest: /root/tmp/puppet5-release-xenial.deb
+      when: ansible_os_family == "Debian"
+
+    - name: Baixando instalacao puppet CentOS
+      get_url:
+        url: https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
+        dest: /root/tmp/puppet5-release-el-7.noarch.rpm
+      when: ansible_os_family == "RedHat"

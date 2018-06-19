@@ -1,0 +1,62 @@
+---
+- name: Playbook de testes
+  hosts: all
+  tasks: 
+
+  - name: Verificando memoria
+    command: free -h
+
+  - name: Instalando o sl
+    apt: name=sl state=absent update_cache=yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Instalando Cowsay - UBUNTU
+    apt:
+      name: cowsay
+      state: present
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  
+
+  - name: Gerando o PATH do ROOT
+    lineinfile:
+      path: /etc/profile
+      line: "export PATH=$PATH:/usr/games"
+      state: present
+
+  - name: Garantindo o hosts
+    lineinfile:
+      path: /etc/hosts
+      create: yes
+      line: "{{ item }}"
+    with_items:
+    -  "192.168.99.10 devops.salas4linux.com.br devops"
+    -  "192.168.99.20 docker.salas4linux.com.br docker"
+    -  "192.168.99.30 automation.salas4linux.com.br automation"
+
+  - name: Instalando o nginx - UBUNTU
+    apt: name=nginx state=present update_cache=yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Instalando o nginx - CENTOS
+    yum: name=nginx state=present
+    when: ansible_distribution == "CentOS"
+    notify: restart
+
+  - name: Criando um usuario
+    user:
+      name: "{{ username }} "
+      shell: /bin/bash
+      create_home: yes
+
+  - name: Enviando arquivo
+    copy:
+      src: arquivo
+      dest: /tmp/arquivo
+
+  handlers:
+  - name: restart
+    service: 
+      name: nginx
+      start: restarted

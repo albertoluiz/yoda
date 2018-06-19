@@ -1,0 +1,105 @@
+---
+- name: Playbook de testes
+  hosts: all
+  tasks: 
+
+  - name: Verificando memoria
+    command: free -h
+
+  - name: Instalando o sl
+    apt: name=sl state=absent update_cache=yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Instalando Cowsay - UBUNTU
+    apt:
+      name: cowsay
+      state: present
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Stop nginx
+    service:
+      name: nginx
+      state: stopped
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Desinstalando Pacotes CENTOS
+    yum:
+      name: "{{ item }}"
+      state: absent
+    with_items:
+    - "nginx"
+    when: ansible_distribution == "CentOS"
+
+  - name: Gerando o PATH do ROOT
+    lineinfile:
+      path: /etc/profile
+      line: "export PATH=$PATH:/usr/games"
+      state: present
+
+  - name: Garantindo o hosts
+    lineinfile:
+      path: /etc/hosts
+      create: yes
+      line: "{{ item }}"
+    with_items:
+    -  "192.168.99.10 devops.salas4linux.com.br devops"
+    -  "192.168.99.20 docker.salas4linux.com.br docker"
+    -  "192.168.99.30 automation.salas4linux.com.br automation"
+
+  - name: Removendo do nginx - UBUNTU
+    apt: name=nginx state=absent update_cache=yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Instalando o apache2 no UBUNTU
+    apt: name=apache2 state=present update_cache=yes
+    notify: restart_apache2
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Instalando o apache mod php no UBUNTU
+    apt: name=libapache2-mod-php7.0 state=present update_cache=yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Instalando o php no UBUNTU
+    apt: name=php7.0 state=present update_cache=yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Instalando httpd - CENTOS
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - "httpd"
+    notify: restart_httpd
+    when: ansible_distribution == "CentOS"
+
+  - name: Instalando Pacotes - CENTOS
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - "epel-release"
+    - "php"
+    when: ansible_distribution == "CentOS"
+
+  - name: Criando um usuario
+    user:
+      name: "{{ username }}"
+      shell: /bin/bash
+      create_home: yes
+
+  - name: Enviando arquivo
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+
+  handlers:
+  - name: restart_apache2
+    service:
+      name: apache2
+      state: restarted
+
+  - name: restart_httpd
+    service: 
+      name: httpd
+      state: restarted

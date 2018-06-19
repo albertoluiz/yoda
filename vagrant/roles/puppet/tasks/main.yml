@@ -1,0 +1,10 @@
+---
+# tasks file for puppet
+- name: Role de instalacao do puppet
+  hosts: all
+  tasks:
+    - include: prerequisitos.yml
+    - include: install_ubuntu.yml
+      when: ansible_os_family == "Debian"
+    - include: install_centos.yml
+      when: ansible_os_family == "RedHat"
