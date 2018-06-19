@@ -1,0 +1,241 @@
+    1  apt update && apt install python -y
+    2  exit
+    3  sl
+    4  cowsay hello
+    5  sl
+    6  cat /etc/hosts
+    7  service nginx status
+    8  exit
+    9  ssh 192.168.99.10
+   10  ssh 192.168.99.30
+   11  ssh 192.168.99.20
+   12  sl
+   13  sl -F
+   14  cat /etc/profile
+   15  sl
+   16  sudo su -
+   17  exit
+   18  systemctl status nginx
+   19  systemctl status apache2
+   20  systemctl status nginx
+   21  systemctl status apache2
+   22  ls
+   23  cd ..
+   24  ls
+   25  cd var
+   26  ls
+   27  cd opt
+   28  ls
+   29  cd ..
+   30  cd var
+   31  ls
+   32  cd www
+   33  ls
+   34  cd ..
+   35  ls
+   36  cd opt/
+   37  ls
+   38  cd ..
+   39  cd etc/
+   40  ls
+   41  cd ..
+   42  ls
+   43  cd var
+   44  ls
+   45  cd local
+   46  ls
+   47  cd ..
+   48  cd etc
+   49  ls
+   50  cd apache2/
+   51  ls
+   52  exit
+   53  cd /root/
+   54  ls
+   55  cd tmp/
+   56  l
+   57  ls
+   58  exit
+   59  puppet --version
+   60  exit
+   61  puppet --version
+   62  puppet
+   63  systemctl puppet status
+   64  cd /etc/puppetlabs/code/environments/production/
+   65  ls
+   66  cd modules/
+   67  ls
+   68  cd ..
+   69  pdk new module docker
+   70  history
+   71  exit
+   72  puppet agent -t --server devops.salas4linux.com.br
+   73  puppet agent -t --server
+   74  puppet agent -t --server devops.salas4linux.com.br
+   75  docker ps
+   76  docker images
+   77  cd /etc/ap
+   78  cd /etc/apt/
+   79  ls
+   80  cat sources.list.d
+   81  cat sources.list
+   82  docker ps
+   83  docker images
+   84  docker ps
+   85  docker images
+   86  cd ..
+   87  ls
+   88  docker images
+   89  docker ps
+   90  docker ps -a
+   91  cd /etc/puppetlabs/code/environments/production/modules/
+   92  ls
+   93  cd /
+   94  docker -help
+   95  docker ps
+   96  docker ps -a
+   97  docker run debian /bin/ls /etc
+   98  docker ps -a
+   99  docker run --name desafiador -it centos /bin/bash
+  100  docker ps
+  101  docker ps -a
+  102  docker run --name asa_noturna -h asa_noturna -it centos /bin/bash
+  103  docker ps
+  104  docker images
+  105  docker ps -a
+  106  exit
+  107  sudo su -
+  108  exit
+  109  docker search laki
+  110  docker search kali
+  111  docker pull kalilinux/kali-linux-docker
+  112  docker images
+  113  docker ps -a
+  114  exit
+  115  docker ps
+  116  docker ps -a
+  117  docker rm 4bba13d6b24d
+  118  docker ps -a
+  119  docker ps -qa
+  120  docker ps -a
+  121  docker ps
+  122  docker rm 7ee1d850422c
+  123  docker ps -a
+  124  docker system prune
+  125  docker images
+  126  ls
+  127  pwd
+  128  sudo su -
+  129  docker volume ls
+  130  docker volume create --name dcwomen
+  131  cd /var/lib/docker/volumes/dcwomen/
+  132  ls
+  133  cd _data/
+  134  ls
+  135  cd ..
+  136  ls
+  137  cd _data/
+  138  ls
+  139  touch {arlequina,hera_verenosa,mulher_maravilha,mulher_gaviao}
+  140  ls
+  141  ls -l
+  142  cd
+  143  pwd
+  144  docker run -dti --name dcwomen -v dcwomen:/root/pasta_dcwomen centos /bin/bash
+  145  docker exec dcwomen /bin/ls /root/pasta_dcwomen
+  146  docker exec -it dcwomen /bin/bash
+  147  ls
+  148  docker ps
+  149  docker volume ls
+  150  cd /var/lib/docker/volumes/dcwomen/_data/
+  151  ls -l
+  152  history
+  153  cd
+  154  mkdir dcmen
+  155  ls
+  156  cd dcmen/
+  157  touch superman{1..10}
+  158  ls
+  159  pwd
+  160  cd
+  161  ls
+  162  docker run -dit --name supermen -v /root/dcmen/:/root/pasta_dcmen/ centos /bin/bash
+  163  docker ps
+  164  docker exec -it supermen /bin/bash
+  165  docker ps
+  166  docker ps -a
+  167  docker exec supermen ls /root/pasta_dcmen/
+  168  docker inspect supermen
+  169  ifconfig
+  170  docker stats
+  171  docker run -it --name server_nginx -h server_nginx -p 8082:80 nginx /bin/bash
+  172  docker ps
+  173  docker network create --subnet 10.0.0.0/16 dockerlan
+  174  docker network connect dockerlan server_nginx 
+  175  docker inspect
+  176  docker inspect server_nginx
+  177  #docker network connect dockerlan server_nginx 
+  178  #docker network create --subnet 10.0.0.0/16 dockerlan
+  179  docker run -it --name cliente_nginx -h cliente_nginx --ip 10.0.0.10 --net dockerlan centos /bin/bash
+  180  docker ps
+  181  docker commit cliente_nginx imagem_ifconfig
+  182  docker images
+  183  docker run -it --name ifconfig -h ifconfig imagem_ifconfig
+  184  ps
+  185  docker ps -a
+  186  docker rm ifconfig
+  187  docker run -it --name ifconfig -h ifconfig imagem_ifconfig
+  188  docker ps
+  189  history
+  190  curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+  191  chmod +x /usr/local/bin/docker-compose 
+  192  docker-compose 
+  193  ls
+  194  mkdir wordpress
+  195  cd wordpress/
+  196  ls
+  197  nano docker-compose.yml
+  198  docker-compose up -d
+  199  nano docker-compose.yml 
+  200  docker-compose up -d
+  201  docker ps
+  202  docker logs -f wordpress_wordpress_1 
+  203  docker ps
+  204  docker ps -a
+  205  docker stop wordpress_mysql_server_1
+  206  docker rm wordpress_mysql_server_1
+  207  docker rm wordpress_wordpress_1
+  208  docker ps -a
+  209  nano docker-compose.yml 
+  210  docker-compose up -d
+  211  docker ps
+  212  docker run -d --name portainer -p 8084:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
+  213  cd ..
+  214  ls
+  215  mkdir dockerfile
+  216  cd dockerfile/
+  217  ls
+  218  nano Dockerfile
+  219  docker build -t imagem_ubuntu .
+  220  docker images
+  221  docker ps
+  222  ls
+  223  cat Dockerfile 
+  224  docker run -d --name container_apache -p 8085:80 imagem_ubuntu
+  225  docker ps
+  226  docker ps -a
+  227  docker rm container_apache 
+  228  cat Dockerfile 
+  229  docker run -dit --name container_apache -p 8085:80 imagem_ubuntu
+  230  docker ps
+  231  cat Dockerfile 
+  232  docker images
+  233  docker exec -it container_apache /bin/bash
+  234  docker p
+  235  docker ps
+  236  docker save imagem_ubuntu -o aqualad.tar
+  237  ls
+  238  ls -l
+  239  exit
+  240  history
+  241  history > commands_docker.txt
